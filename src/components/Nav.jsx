@@ -43,7 +43,29 @@ function Nav() {
           </svg>
           <span className="ml-3 text-3xl font-extrabold">Buffer</span>
         </Link>
-        <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-xl justify-center">
+
+        <Link
+          onClick={() => {
+            document.querySelector("nav").classList.toggle("hidden");
+                  }}
+                  className="lg:hidden ml-auto flex items-center text-gray-900"
+        >
+          <svg
+            className="w-6 h-6 text-gray-800"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeWidth="2"
+              d="M5 7h14M5 12h14M5 17h10"
+            />
+          </svg>
+        </Link>
+        <nav className="md:ml-auto hidden md:mr-auto lg:flex md:flex-wrap items-center text-xl justify-center">
           {navItems.map((item, index) => (
             <div key={index} className="relative group inline-block">
               <Link
@@ -73,7 +95,7 @@ function Nav() {
                 <span className="h-[1px] w-3 group-hover:bg-blue-700 transition mt-2 group-hover:ease-in-out group-hover:-translate-y-1 group-hover:scale-150 duration-300"></span>
               </Link>
               {item.dropdownItems && (
-                <div className="absolute hidden rounded-md drop-shadow-2xl shadow-inner text-gray-900 group-hover:block">
+                <div className="absolute group hidden rounded-md drop-shadow-2xl shadow-inner text-gray-900 group-hover:block">
                   {item.dropdownItems.map((dropdownItem, index) => (
                     <Link
                       key={index}
@@ -88,7 +110,7 @@ function Nav() {
             </div>
           ))}
         </nav>
-        <div className="inline-flex items-center">
+        <div className="hidden lg:inline-flex items-center">
           <button className="inline-flex items-center  px-3 focus:outline-none  text-lg mt-4 md:mt-0">
             <svg
               className="w-7 h-7"
