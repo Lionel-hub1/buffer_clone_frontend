@@ -1,6 +1,28 @@
 import { Link } from "react-router-dom";
 
 function Nav() {
+  const navItems = [
+    {
+      name: "Tools",
+      dropdownItems: [
+        { name: "Publish" },
+        { name: "Analyze" },
+        { name: "Engage" },
+        { name: "Reply" },
+        { name: "Amplify" },
+      ],
+    },
+    {
+      name: "Channels",
+      dropdownItems: [
+        { name: "Facebook" },
+        { name: "Instagram" },
+        { name: "Twitter" },
+      ],
+    },
+    { name: "Pricing" },
+    { name: "Blog" },
+  ];
   return (
     <header className="text-gray-600 body-font text-xl">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -22,38 +44,49 @@ function Nav() {
           <span className="ml-3 text-3xl font-extrabold">Buffer</span>
         </Link>
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-xl justify-center">
-          <Link className="mr-5 hover:text-gray-900 flex flex-col items-center">
-            <span className="hover:text-blue-700 flex flex-row items-center">
-              <span>Tools</span>
-              <svg
-                className="w-7 h-7"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+          {navItems.map((item, index) => (
+            <div key={index} className="relative group inline-block">
+              <Link
+                to={item.dropdownItems ? null : item.name.toLowerCase()}
+                className="mr-5 hover:text-gray-900 flex flex-col items-center"
               >
-                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  <rect width="24" height="24" fill="white"></rect>{" "}
-                  <path
-                    d="M17 9.5L12 14.5L7 9.5"
-                    // stroke="#000000"
-                    stroke="#267DDB"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>{" "}
-                </g>
-              </svg>
-            </span>
-            <span className="h-1 w-6 bg-blue-700 mt-2"></span>
-          </Link>
-          <Link className="mr-5 hover:text-gray-900">Channels</Link>
-          <Link className="mr-5 hover:text-gray-900">Pricing</Link>
-          <Link className="mr-5 hover:text-gray-900">Blog</Link>
+                <span className="text-gray-950 hover:text-blue-700 flex flex-row items-center">
+                  <span>{item.name}</span>
+                  {item.dropdownItems && (
+                    <svg
+                      className="w-6 h-6  ml-1"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m19 9-7 7-7-7"
+                      />
+                    </svg>
+                  )}
+                </span>
+                <span className="h-[1px] w-3 group-hover:bg-blue-700 transition mt-2 group-hover:ease-in-out group-hover:-translate-y-1 group-hover:scale-150 duration-300"></span>
+              </Link>
+              {item.dropdownItems && (
+                <div className="absolute hidden rounded-md drop-shadow-2xl shadow-inner text-gray-900 group-hover:block">
+                  {item.dropdownItems.map((dropdownItem, index) => (
+                    <Link
+                      key={index}
+                      to={`${dropdownItem.name.toLowerCase()}/`}
+                      className="block px-4 py-2 text-gray-900"
+                    >
+                      {dropdownItem.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </nav>
         <div className="inline-flex items-center">
           <button className="inline-flex items-center  px-3 focus:outline-none  text-lg mt-4 md:mt-0">
