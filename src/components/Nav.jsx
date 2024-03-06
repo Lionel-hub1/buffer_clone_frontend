@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Nav() {
+  const [showBarItems, setShowBarItems] = useState(false);
   const navItems = [
     {
       name: "Tools",
@@ -23,12 +25,24 @@ function Nav() {
     { name: "Pricing" },
     { name: "Blog" },
   ];
+  useEffect(() => {
+    const handleResize = () => {
+      setShowBarItems(false);
+    };
+
+    window.addEventListener("resize", handleResize);
+    console.log("added event listener");
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <header className="text-gray-600 body-font text-xl">
-      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <div className="container mx-auto flex flex-row justify-between p-5 md:flex-row items-center">
         <Link
           to="/"
-          className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+          className="flex title-font font-medium items-center text-gray-900"
         >
           <svg
             fill="#000"
@@ -46,25 +60,93 @@ function Nav() {
 
         <Link
           onClick={() => {
-            document.querySelector("nav").classList.toggle("hidden");
-                  }}
-                  className="lg:hidden ml-auto flex items-center text-gray-900"
+            setShowBarItems(!showBarItems);
+          }}
+          className="lg:hidden ml-auto flex items-center text-gray-900"
         >
-          <svg
-            className="w-6 h-6 text-gray-800"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeWidth="2"
-              d="M5 7h14M5 12h14M5 17h10"
-            />
-          </svg>
+          {showBarItems ? (
+            <svg
+              className="w-8 h-8 text-gray-800"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18 18 6m0 12L6 6"
+              />
+            </svg>
+          ) : (
+            <svg
+              className="w-8 h-8 text-gray-800"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeWidth="2"
+                d="M5 7h14M5 12h14M5 17h14"
+              />
+            </svg>
+          )}
         </Link>
+        {showBarItems && (
+          <div className="lg:hidden  absolute top-0 left-0 w-[10rem] h-full bg-gray-100 bg-opacity-95 z-50">
+            <div className="flex flex-col items-center justify-center">
+              {navItems.map((item, index) => (
+                <div key={index} className="relative group inline-block">
+                  <Link
+                    to={item.dropdownItems ? null : item.name.toLowerCase()}
+                    className="mr-5 hover:text-gray-900 flex flex-col items-center"
+                  >
+                    <span className="text-gray-950 hover:text-blue-700 flex flex-row items-center">
+                      <span>{item.name}</span>
+                      {item.dropdownItems && (
+                        <svg
+                          className="w-6 h-6  ml-1"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="m19 9-7 7-7-7"
+                          />
+                        </svg>
+                      )}
+                    </span>
+                    <span className="h-[1px] w-3 group-hover:bg-blue-700 mt-2 group-hover:ease-in-out group-hover:-translate-y-1 group-hover:scale-150 duration-300"></span>
+                  </Link>
+                  {item.dropdownItems && (
+                    <div className="absolute bg-white w-[10rem] -right-[10rem] top-0 group hidden rounded-md drop-shadow-2xl shadow-inner text-gray-900 group-hover:block">
+                      {item.dropdownItems.map((dropdownItem, index) => (
+                        <Link
+                          key={index}
+                          to={`${dropdownItem.name.toLowerCase()}/`}
+                          className="block px-4 py-2 text-gray-900"
+                        >
+                          {dropdownItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <nav className="md:ml-auto hidden md:mr-auto lg:flex md:flex-wrap items-center text-xl justify-center">
           {navItems.map((item, index) => (
             <div key={index} className="relative group inline-block">
@@ -95,7 +177,7 @@ function Nav() {
                 <span className="h-[1px] w-3 group-hover:bg-blue-700 transition mt-2 group-hover:ease-in-out group-hover:-translate-y-1 group-hover:scale-150 duration-300"></span>
               </Link>
               {item.dropdownItems && (
-                <div className="absolute group hidden rounded-md drop-shadow-2xl shadow-inner text-gray-900 group-hover:block">
+                <div className="absolute bg-white group hidden rounded-md drop-shadow-2xl shadow-inner text-gray-900 group-hover:block">
                   {item.dropdownItems.map((dropdownItem, index) => (
                     <Link
                       key={index}
