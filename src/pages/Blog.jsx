@@ -227,22 +227,26 @@ function Blog() {
           filteredArticles.map((article, index) => (
             <div
               key={index}
-              className="flex flex-col border border-1 p-4 rounded-lg"
+              className="group flex flex-col border border-1 p-4 rounded-lg overflow-hidden"
             >
               <img
-                className="h-48 w-full object-cover"
+                className="h-48 w-full object-cover duration-500 group-hover:ease-in-out group-hover:-translate-y-1 group-hover:scale-105"
                 src={article.image}
                 alt=""
               />
               <div className="flex justify-between">
-                <p className="text-blue-700 text-lg mt-2">{article.type}</p>
+                <Link className="text-blue-700 text-lg mt-2 group-hover:underline">
+                  {article.type}
+                </Link>
                 <p className="text-gray-600 text-sm mt-2">{article.date}</p>
               </div>
-              <h3 className="font-bold text-2xl my-3">{article.title}</h3>
+              <Link className="font-bold text-2xl my-3 group-hover:underline">
+                {article.title}
+              </Link>
               <p className="text-gray-600 text-lg mt-2 line-clamp-3">
                 {article.content}
               </p>
-              <div className="flex mt-3 items-center hover:underline cursor-pointer">
+              <Link className="flex mt-3 items-center group-hover:underline">
                 <img
                   className="w-10 h-10 object-cover rounded-full border-4 border-blue-700 p-1"
                   src={img3}
@@ -251,7 +255,7 @@ function Blog() {
                 <div className="ml-4">
                   <h3 className="font-bold text-lg">Tamilore Oladipo</h3>
                 </div>
-              </div>
+              </Link>
             </div>
           ))
         ) : (
