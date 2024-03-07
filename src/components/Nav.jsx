@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import pubicon from "../assets/images/publish-icon.svg";
+import NavLink from "./NavLink";
 
 function Nav() {
   const [showBarItems, setShowBarItems] = useState(false);
@@ -7,24 +9,50 @@ function Nav() {
     {
       name: "Tools",
       dropdownItems: [
-        { name: "Publish" },
-        { name: "Analyze" },
-        { name: "Engage" },
-        { name: "Reply" },
-        { name: "Amplify" },
+        {
+          name: "Publish",
+          path: "publish",
+          icon: pubicon,
+          desc: `Plan, collaborate, and publish thumb-stopping content`,
+        },
+        {
+          name: "Analyze",
+          path: "analyze",
+          icon: pubicon,
+          desc: `Analyze social media performance and create reports`,
+        },
+        {
+          name: "Engage",
+          path: "engage",
+          icon: pubicon,
+          desc: `Respond to comments and messages`,
+        },
+        {
+          name: "Reply",
+          path: "reply",
+          icon: pubicon,
+          desc: `Reply to comments and messages`,
+        },
+        {
+          name: "Amplify",
+          path: "amplify",
+          icon: pubicon,
+          desc: `Manage social media messages`,
+        },
       ],
     },
     {
       name: "Channels",
       dropdownItems: [
-        { name: "Facebook" },
-        { name: "Instagram" },
-        { name: "Twitter" },
+        { name: "Facebook", path: "facebook", icon: pubicon },
+        { name: "Twitter", path: "twitter", icon: pubicon },
+        { name: "Youtube", path: "youtube", icon: pubicon },
       ],
     },
-    { name: "Pricing" },
-    { name: "Blog" },
+    { name: "Pricing", path: "pricing/" },
+    { name: "Blog", path: "/" },
   ];
+
   useEffect(() => {
     const handleResize = () => {
       setShowBarItems(false);
@@ -103,7 +131,7 @@ function Nav() {
               {navItems.map((item, index) => (
                 <div key={index} className="relative group inline-block">
                   <Link
-                    to={item.dropdownItems ? null : item.name.toLowerCase()}
+                    to={item.dropdownItems ? null : item.path}
                     className="mr-5 hover:text-gray-900 flex flex-col items-center"
                   >
                     <span className="text-gray-950 hover:text-blue-700 flex flex-row items-center">
@@ -133,7 +161,7 @@ function Nav() {
                       {item.dropdownItems.map((dropdownItem, index) => (
                         <Link
                           key={index}
-                          to={`${dropdownItem.name.toLowerCase()}/`}
+                          to={`${dropdownItem.path}/`}
                           className="block px-4 py-2 text-gray-900"
                         >
                           {dropdownItem.name}
@@ -148,52 +176,10 @@ function Nav() {
         )}
 
         <nav className="md:ml-auto hidden md:mr-auto lg:flex md:flex-wrap items-center text-xl justify-center">
-          {navItems.map((item, index) => (
-            <div key={index} className="relative group inline-block">
-              <Link
-                to={item.dropdownItems ? null : item.name.toLowerCase()}
-                className="mr-5 hover:text-gray-900 flex flex-col items-center"
-              >
-                <span className="text-gray-950 hover:text-blue-700 flex flex-row items-center">
-                  <span>{item.name}</span>
-                  {item.dropdownItems && (
-                    <svg
-                      className="w-6 h-6  ml-1"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="m19 9-7 7-7-7"
-                      />
-                    </svg>
-                  )}
-                </span>
-                <span className="h-[1px] w-3 group-hover:bg-blue-700 transition mt-2 group-hover:ease-in-out group-hover:-translate-y-1 group-hover:scale-150 duration-300"></span>
-              </Link>
-              {item.dropdownItems && (
-                <div className="absolute bg-white group hidden rounded-md drop-shadow-2xl shadow-inner text-gray-900 group-hover:block">
-                  {item.dropdownItems.map((dropdownItem, index) => (
-                    <Link
-                      key={index}
-                      to={`${dropdownItem.name.toLowerCase()}/`}
-                      className="block px-4 py-2 text-gray-900"
-                    >
-                      {dropdownItem.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+          {navItems.map((item, index) => NavLink(index, item))}
         </nav>
         <div className="hidden lg:inline-flex items-center">
-          <button className="inline-flex items-center  px-3 focus:outline-none  text-lg mt-4 md:mt-0">
+          <button className="focus:outline-none">
             <svg
               className="w-7 h-7"
               viewBox="0 0 24 24"
@@ -232,8 +218,8 @@ function Nav() {
                 </defs>{" "}
               </g>
             </svg>
-            <span className="mx-4 text-blue-700">Login</span>
           </button>
+          <button className="text-lg mx-4 text-blue-700">Login</button>
           <button className="px-4 py-2 rounded bg-blue-700 hover:bg-blue-800 text-white">
             Get started now
           </button>
