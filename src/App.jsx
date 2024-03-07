@@ -1,11 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Layout from "./Layout";
-import Home from "./pages/Home";
 import { About } from "./pages/About";
 import NoMatch from "./pages/NoMatch";
 import Blog from "./pages/Blog";
-
 
 function App() {
   return (
