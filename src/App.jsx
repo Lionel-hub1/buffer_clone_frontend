@@ -4,13 +4,15 @@ import Layout from "./Layout";
 import Home from "./pages/Home";
 import { About } from "./pages/About";
 import NoMatch from "./pages/NoMatch";
+import Blog from "./pages/Blog";
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route index element={<Blog />} />
           <Route path="about" element={<About />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
