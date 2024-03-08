@@ -10,7 +10,7 @@ function Blog() {
       image: img3,
       title: "Article Title",
       date: "Apr 25, 2023",
-      type: "News",
+      post_type: "News",
       comments: 5,
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, repudiandae possimus! Quam deserunt perspiciatis sed modi recusandae porro, inventore ducimus maiores natus? Obcaecati amet, fuga ex minus cupiditate facilis aperiam.",
@@ -20,7 +20,7 @@ function Blog() {
       image: img3,
       title: "Article Title",
       date: "Apr 25, 2023",
-      type: "News",
+      post_type: "News",
       comments: 0,
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, repudiandae possimus! Quam deserunt perspiciatis sed modi recusandae porro, inventore ducimus maiores natus? Obcaecati amet, fuga ex minus cupiditate facilis aperiam.",
@@ -30,7 +30,7 @@ function Blog() {
       image: img3,
       title: "Article Title",
       date: "Apr 25, 2023",
-      type: "Podcasts",
+      post_type: "Podcasts",
       comments: 3,
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, repudiandae possimus! Quam deserunt perspiciatis sed modi recusandae porro, inventore ducimus maiores natus? Obcaecati amet, fuga ex minus cupiditate facilis aperiam.",
@@ -40,7 +40,7 @@ function Blog() {
       image: img3,
       title: "Article Title",
       date: "Apr 25, 2023",
-      type: "News",
+      post_type: "News",
       comments: 2,
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, repudiandae possimus! Quam deserunt perspiciatis sed modi recusandae porro, inventore ducimus maiores natus? Obcaecati amet, fuga ex minus cupiditate facilis aperiam.",
@@ -50,7 +50,7 @@ function Blog() {
       image: img3,
       title: "Article Title",
       date: "Apr 25, 2023",
-      type: "News",
+      post_type: "News",
       comments: 1,
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, repudiandae possimus! Quam deserunt perspiciatis sed modi recusandae porro, inventore ducimus maiores natus? Obcaecati amet, fuga ex minus cupiditate facilis aperiam.",
@@ -60,7 +60,7 @@ function Blog() {
       image: img3,
       title: "Article Title",
       date: "Apr 25, 2023",
-      type: "News",
+      post_type: "News",
       comments: 4,
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, repudiandae possimus! Quam deserunt perspiciatis sed modi recusandae porro, inventore ducimus maiores natus? Obcaecati amet, fuga ex minus cupiditate facilis aperiam.",
@@ -70,7 +70,7 @@ function Blog() {
       image: img3,
       title: "Article Title",
       date: "Apr 25, 2023",
-      type: "Podcasts",
+      post_type: "Podcasts",
       comments: 6,
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, repudiandae possimus! Quam deserunt perspiciatis sed modi recusandae porro, inventore ducimus maiores natus? Obcaecati amet, fuga ex minus cupiditate facilis aperiam.",
@@ -80,7 +80,7 @@ function Blog() {
       image: img3,
       title: "Article Title",
       date: "Apr 25, 2023",
-      type: "Small Business",
+      post_type: "Small Business",
       comments: 7,
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, repudiandae possimus! Quam deserunt perspiciatis sed modi recusandae porro, inventore ducimus maiores natus? Obcaecati amet, fuga ex minus cupiditate facilis aperiam.",
@@ -90,7 +90,7 @@ function Blog() {
       image: img3,
       title: "Article Title",
       date: "Apr 25, 2023",
-      type: "Small Business",
+      post_type: "Small Business",
       comments: 8,
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, repudiandae possimus! Quam deserunt perspiciatis sed modi recusandae porro, inventore ducimus maiores natus? Obcaecati amet, fuga ex minus cupiditate facilis aperiam.",
@@ -100,7 +100,7 @@ function Blog() {
       image: img3,
       title: "Article Title",
       date: "Apr 25, 2023",
-      type: "Small Business",
+      post_type: "Small Business",
       comments: 9,
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, repudiandae possimus! Quam deserunt perspiciatis sed modi recusandae porro, inventore ducimus maiores natus? Obcaecati amet, fuga ex minus cupiditate facilis aperiam.",
@@ -138,7 +138,7 @@ function Blog() {
   };
 
   const filteredArticles = articlesList.filter(
-    (article) => activeTab === "Latest Updates" || article.type === activeTab
+    (article) => activeTab === "Latest Updates" || article.post_type === activeTab
   );
 
   return (
@@ -236,7 +236,7 @@ function Blog() {
               />
               <div className="flex justify-between">
                 <Link className="text-blue-700 text-lg mt-2 group-hover:underline">
-                  {article.type}
+                  {article.post_type}
                 </Link>
                 <p className="text-gray-600 text-sm mt-2">{article.date}</p>
               </div>

@@ -34,6 +34,7 @@ export default function NavLink(index, item) {
         <div className="absolute min-w-96 bg-white group hidden rounded-md drop-shadow-2xl shadow-inner text-gray-900 group-hover:block">
           {item.dropdownItems.map((dropdownItem, index) =>
             DropDownItem(index, dropdownItem)
+            // <DropDownItem key={index} index={index} dropdownItem={dropdownItem} />
           )}
         </div>
       )}
