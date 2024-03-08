@@ -4,12 +4,14 @@ import glass from "../assets/icons/glasses-icon.svg";
 import { useState } from "react";
 
 function Blog() {
+  const [activeTab, setActiveTab] = useState("Latest Updates");
+
   const articlesList = [
     {
       id: 1,
       image: img3,
       title: "Article Title",
-      date: "Apr 25, 2023",
+      date_posted: "Apr 25, 2023",
       post_type: "News",
       comments: 5,
       content:
@@ -19,7 +21,7 @@ function Blog() {
       id: 2,
       image: img3,
       title: "Article Title",
-      date: "Apr 25, 2023",
+      date_posted: "Apr 25, 2023",
       post_type: "News",
       comments: 0,
       content:
@@ -29,7 +31,7 @@ function Blog() {
       id: 3,
       image: img3,
       title: "Article Title",
-      date: "Apr 25, 2023",
+      date_posted: "Apr 25, 2023",
       post_type: "Podcasts",
       comments: 3,
       content:
@@ -39,7 +41,7 @@ function Blog() {
       id: 4,
       image: img3,
       title: "Article Title",
-      date: "Apr 25, 2023",
+      date_posted: "Apr 25, 2023",
       post_type: "News",
       comments: 2,
       content:
@@ -49,7 +51,7 @@ function Blog() {
       id: 5,
       image: img3,
       title: "Article Title",
-      date: "Apr 25, 2023",
+      date_posted: "Apr 25, 2023",
       post_type: "News",
       comments: 1,
       content:
@@ -59,7 +61,7 @@ function Blog() {
       id: 6,
       image: img3,
       title: "Article Title",
-      date: "Apr 25, 2023",
+      date_posted: "Apr 25, 2023",
       post_type: "News",
       comments: 4,
       content:
@@ -69,7 +71,7 @@ function Blog() {
       id: 7,
       image: img3,
       title: "Article Title",
-      date: "Apr 25, 2023",
+      date_posted: "Apr 25, 2023",
       post_type: "Podcasts",
       comments: 6,
       content:
@@ -79,7 +81,7 @@ function Blog() {
       id: 8,
       image: img3,
       title: "Article Title",
-      date: "Apr 25, 2023",
+      date_posted: "Apr 25, 2023",
       post_type: "Small Business",
       comments: 7,
       content:
@@ -89,7 +91,7 @@ function Blog() {
       id: 9,
       image: img3,
       title: "Article Title",
-      date: "Apr 25, 2023",
+      date_posted: "Apr 25, 2023",
       post_type: "Small Business",
       comments: 8,
       content:
@@ -99,7 +101,7 @@ function Blog() {
       id: 10,
       image: img3,
       title: "Article Title",
-      date: "Apr 25, 2023",
+      date_posted: "Apr 25, 2023",
       post_type: "Small Business",
       comments: 9,
       content:
@@ -131,14 +133,13 @@ function Blog() {
     },
   ];
 
-  const [activeTab, setActiveTab] = useState("Latest Updates");
-
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
   const filteredArticles = articlesList.filter(
-    (article) => activeTab === "Latest Updates" || article.post_type === activeTab
+    (article) =>
+      activeTab === "Latest Updates" || article.post_type === activeTab
   );
 
   return (
@@ -238,7 +239,9 @@ function Blog() {
                 <Link className="text-blue-700 text-lg mt-2 group-hover:underline">
                   {article.post_type}
                 </Link>
-                <p className="text-gray-600 text-sm mt-2">{article.date}</p>
+                <p className="text-gray-600 text-sm mt-2">
+                  {article.date_posted}
+                </p>
               </div>
               <Link className="font-bold text-2xl my-3 group-hover:underline">
                 {article.title}
